@@ -5,6 +5,9 @@ export default class Character {
       if (name.length < 2 || name.length > 10) {
           throw new Error('Invalid name length');
       }
+      if (!types.includes(type)) {
+        throw new Error('Invalid character type');
+      }
       
       this.name = name;
       this.type = type;

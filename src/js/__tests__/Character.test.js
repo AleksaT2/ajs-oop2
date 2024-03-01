@@ -13,6 +13,11 @@ test('Too long name', () => {
   ).toThrow('Invalid name length');
 });
 
+test('Invalid character type', () => {
+  expect(
+      () => new Character('Bowy', 'FakeBowman', 100, 100),
+  ).toThrow('Invalid character type');
+});
 
 test('Inflict damage to character', () => {
   const testChar = new Bowman('Bowy');
