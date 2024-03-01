@@ -1,26 +1,21 @@
 import Character from '../Character.js';
+import Bowman from '../Bowman.js';
 
 test('Too short name', () => {
   expect(
-      () => new Character('O', 'Bowman', 100, 100),
+      () => new Character('O', 'Bowman'),
   ).toThrow('Invalid name length');
 });
 
 test('Too long name', () => {
   expect(
-      () => new Character('LooooooongName', 'Daemon', 100, 100),
+      () => new Character('LooooooongName', 'Daemon'),
   ).toThrow('Invalid name length');
-});
-
-test('Wrong character type', () => {
-  expect(
-      () => new Character('Bowy', 'FakeBowman', 100, 100),
-  ).toThrow('Invalid character type');
 });
 
 
 test('Inflict damage to character', () => {
-  const testChar = new Character('Bowy', 'Bowman', 25, 25);
+  const testChar = new Bowman('Bowy');
   testChar.damage(50);
   expect(testChar).toEqual({
       name: 'Bowy',
@@ -33,14 +28,14 @@ test('Inflict damage to character', () => {
 });
 
 test('The value of health cannot be negative', () => {
-  const testChar = new Character('Bowy', 'Bowman', 25, 25);
+  const testChar = new Bowman('Bowy');
   testChar.health = 0;
   testChar.damage(50);
   expect(testChar.health).toEqual(0);
 });
 
 test('Go to the next level', () => {
-  const testChar = new Character('Bowy', 'Bowman', 25, 25);
+  const testChar = new Bowman('Bowy');
   testChar.levelUp();
   expect(testChar).toEqual({
       name: 'Bowy',
@@ -53,7 +48,7 @@ test('Go to the next level', () => {
 });
 
 test('Go to the next level with zero health', () => {
-  const testChar = new Character('Bowy', 'Bowman', 25, 25);
+  const testChar = new Bowman('Bowy');
   testChar.health = 0;
   expect(() => testChar.levelUp()).toThrow(
       'You cannot raise the level with zero health',
